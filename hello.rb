@@ -1,53 +1,27 @@
-array_of_student_hashes = [
-    {
-      'first_name'  => 'Ian', 
-      'last_name'   => 'Gerstel',
-      'hometown'    => 'Chicago'
-    },
-    {
-      'first_name'  => 'Jordan', 
-      'last_name'   => 'Leigh',
-      'hometown'    => 'Chicago'
-    },
-    {
-      'first_name'  => 'Connor', 
-      'last_name'   => 'Lynch',
-      'hometown'    => 'Chicago'
-    },
-    {
-      'first_name'  => 'Ian', 
-      'last_name'   => 'Margolis',
-      'hometown'    => 'Chicago'
-    },
-    {
-      'first_name'  => 'Mona', 
-      'last_name'   => 'Parikh',
-      'hometown'    => 'Chicago'
-    },    {
-      'first_name'  => 'Gurban', 
-      'last_name'   => 'Haydarov',
-      'hometown'    => 'Chicago'
-    },
-    {
-      'first_name'  => 'Jordan', 
-      'last_name'   => 'Curnes',
-      'hometown'    => 'Chicago'
-    },
-    {
-      'first_name'  => 'Shaan', 
-      'last_name'   => 'Shah',
-      'hometown'    => 'Chicago'
-    }
-  ]
+require 'csv'
+require './student'
+
+array_of_students = []
+
+CSV.foreach('students.csv', :headers => true) do |row|
+  s = Student.new
+  s.first_name = row['First Name']
+  s.last_name = row['Last Name']
+  s.hometown = row['Hometown']
+  array_of_students.push(s)
+end
 
 def to_string(student)
-  "#{student['first_name']} #{student['last_name']} is from #{student['hometown']}."
+  "#{student.first_name} #{student.last_name} is from #{student.hometown}."
 end
+
+# HINT: DO NOT OVER-ENGINEER
+# Just get it to work.
 
 def to_html(student)
   "<li class='frame'>
-	  <img class='thumbnail' width='200' height='200' src='images/#{student['first_name']} #{student['last_name']}.jpg'>
-	  <p class='name'>#{student['first_name']} #{student['last_name']}</p>
+	  <img class='thumbnail' width='200' height='200' src='images/#{student.first_name} #{student.last_name}.jpg'>
+	  <p class='name'>#{student.first_name} #{student.last_name}</p>
 	  <p class='hometown'>Chicago</p>
 	</li>"
 end
@@ -56,7 +30,7 @@ def output_to_terminal(students)
   puts 'HELLO CODE ACADEMY'
   puts '------------------'
   students.each do |student_hash|
-    puts to_string student_hash
+    puts to_string(student_hash)
   end
 end
 
@@ -83,5 +57,14 @@ def output_to_browser(students)
   f.close
 end
 
-output_to_terminal(array_of_student_hashes)
-output_to_browser(array_of_student_hashes)
+output_to_terminal(array_of_students)
+output_to_browser(array_of_students)
+
+
+
+
+
+
+
+
+
