@@ -1,10 +1,10 @@
 To get the code you see here onto your computer, type:
 
-**git clone git://github.com/cadevtth/class_photos.git**
+**git clone git://github.com/cadevtth/yearbook.git**
 
-This will create a subdirectory named "class_photos", so to see the code:
+This will create a subdirectory named "yearbook", so to see the code:
 
 ```
-cd class_photos
+cd yearbook
 mate .
 ```
